@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Palmwave Resort & Suites</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+    <link rel="icon" href="../assets/palm-wave-icon.png" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .navbar-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(8, 8, 8);
+            border-radius: 4px;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .navbar-dropdown.active {
+            display: block;
+        }
+        .search-dropdown {
+            position: relative;
+        }
+    </style>
+    <script src="js/path-helper.js"></script>
+</head>
+<body class="text-white bg-gray-900">
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="closeMenu()" 
+class="fixed inset-0 bg-black/60 z-40 hidden"></div>
+
+<!-- SIDEBAR MENU -->
+<div id="sideMenu" 
+class="fixed top-0 left-0 w-[400px] h-full bg-white text-black z-50 transform -translate-x-full transition duration-500 ease-in-out shadow-2xl">
+
+    <div class="flex justify-end p-6">
+        <button onclick="closeMenu()" class="text-3xl">&times;</button>
+    </div>
+
+    <div class="px-10 space-y-5 text-2xl font-light" style="font-family: 'Marcellus', serif;">
+        <a href="index.html" class="block text-yellow-700 hover:text-gray-700">Home</a>
+        
+        <div>
+      <button onclick="toggleSubMenu()" class="flex justify-between w-full items-center">
+        Rooms
+        <span id="arrow" class="transition">â€º</span>
+      </button>
+
+      <div id="subMenu" class="hidden pl-6 mt-2 space-y-2 text-lg">
+        <a href="rooms.html?category=1" class="block">Standard Rooms</a>
+        <a href="rooms.html?category=2" class="block">Deluxe Rooms</a>
+        <a href="rooms.html?category=3" class="block">Suites</a>
+        <a href="rooms.html?category=4" class="block">Villas</a>
+        <a href="rooms.html?category=5" class="block">Penthouse</a>
+      </div>
+    </div>
+        
+        <a href="services.html" class="block text-yellow-700 hover:text-gray-700">Services</a>
+        <a href="../luxury.php" class="block hover:text-gray-700">About The Hotel</a>
+        <a href="#" class="block hover:text-gray-700">Contact</a>
+    </div>
+
+    <div class="absolute bottom-10 left-10 text-sm space-y-2 text-black">
+        <p class="font-semibold">Contact Info</p>
+        <p>322 Main Street, PH, CA 94559</p>
+        <p>+41 22 345 67 88</p>
+        <p>PalmWaveResort&Suites@gmail.com</p>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="relative h-screen bg-cover bg-center" 
+style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&h=900&fit=crop');">
+
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- NAVBAR -->
+  <header class="absolute top-0 left-0 w-full z-20 bg-white/5 border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+
+      <div class="flex items-center space-x-4" style="font-family: 'Marcellus', serif;">
+        <button onclick="openMenu()" class="text-2xl">☰</button>
+
+        <nav class="hidden md:flex space-x-6 uppercase text-sm tracking-wide" style="font-family: 'Marcellus', serif;">
+          <a href="index.html" class="hover:text-gray-300 ">Home</a>
+          <div class="search-dropdown relative group">
+              <a href="rooms.html" class="hover:text-gray-300 flex items-center">
+                  Rooms
+                  <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+              </a>
+              <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                <a href="rooms.html" class="block px-4 py-2 border-b border-slate-700 hover:bg-slate-700 font-semibold">View All Rooms</a>
+                <a href="rooms.html?category=1" class="block px-4 py-2 hover:bg-slate-700">Standard Rooms</a>
+                <a href="rooms.html?category=2" class="block px-4 py-2 hover:bg-slate-700">Deluxe Rooms</a>
+                <a href="rooms.html?category=3" class="block px-4 py-2 hover:bg-slate-700">Suites</a>
+                <a href="rooms.html?category=4" class="block px-4 py-2 hover:bg-slate-700">Villas</a>
+                <a href="rooms.html?category=5" class="block px-4 py-2 hover:bg-slate-700">Penthouse</a>
+              </div>
+          </div>
+
+          <div class="search-dropdown relative group">
+              <a href="../luxury.php" class="hover:text-gray-300 flex items-center">
+                  Pages
+                  <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+              </a>
+              <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                  <a href="../luxury.php" class="block px-4 py-2 hover:bg-slate-700">About The Hotel</a>
+                  <a href="services.html" class="block px-4 py-2 hover:bg-slate-700">Services</a>
+                  <a href="" class="block px-4 py-2 hover:bg-slate-700">Our Blog</a>
+              </div>
+          </div>
+
+        </nav>
+      </div>
+
+      <div class="flex-1 text-center">
+        <h1>
+          <a href="index.html" 
+             class="text-3xl md:text-3xl tracking-wide text-white hover:text-gray-300 transition duration-300"
+             style="font-family: 'Playfair Display', serif; letter-spacing: 0.08em;">
+            Palmwave Resort & Suites
+          </a>
+        </h1>
+      </div>
+
+      <div class="flex items-center space-x-4 text-sm">
+        <span>PalmWaveResort&Suites@gmail.com</span>
+      </div>
+
+    </div>
+  </header>
+        
+
+    <!-- HERO CONTENT -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+        <h2 class="text-4xl md:text-5xl font-light mb-4 text-center" style="font-family: 'Playfair Display', serif;">
+            THINGS TO ENJOY ON THE ISLAND
+        </h2>
+        <p class="text-gray-300 md:text-2xl mb-8 text-center max-w-2xl">
+            Discover Premium Services & Experiences
+        </p>
+            <p>â€œEvery moment at Palmwave Resort & Suites is designed to elevate your island escape into an unforgettable luxury experience.â€</p>
+    </div>
+</section>
+
+<!-- SPA & WELLNESS SECTION -->
+<section class="relative py-20 px-6 bg-gray-900">
+    <!-- Beach Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="../assets/spaandwellness.png" alt="Spa Background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-light mb-6" style="font-family: 'Playfair Display', serif;">
+                Spa & Wellness
+            </h2>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                Set in lush jungle, our modern spa embodies the calm of nature, offering extraordinary visual and auditory experiences that pamper and heal.
+            </p>
+        </div>
+
+        <!-- SERVICE DETAILS -->
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <!-- SPA & WELLNESS DETAIL -->
+            <div class="bg-gray-800 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <span class="text-3xl">ðŸ§˜</span>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center" style="font-family: 'Marcellus', serif;">Rejuvenation Therapies</h3>
+                <p class="text-gray-300 text-center">
+                    Experience ancient healing practices combined with modern wellness techniques. Our expert therapists offer traditional massages, aromatherapy, and holistic treatments that awaken your senses.
+                </p>
+            </div>
+
+            <!-- MEDITATION & YOGA -->
+            <div class="bg-gray-800 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <span class="text-3xl">ðŸ•‰ï¸</span>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center" style="font-family: 'Marcellus', serif;">Meditation & Yoga</h3>
+                <p class="text-gray-300 text-center">
+                    Find inner peace with guided meditation sessions and yoga classes overlooking pristine beaches. Perfect for beginners and experienced practitioners seeking spiritual growth.
+                </p>
+            </div>
+
+            <!-- WELLNESS RETREAT -->
+            <div class="bg-gray-800 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <span class="text-3xl">ðŸŒ¿</span>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center" style="font-family: 'Marcellus', serif;">Holistic Wellness Programs</h3>
+                <p class="text-gray-300 text-center">
+                    Comprehensive wellness packages designed to detoxify, restore, and revitalize. Including nutritional counseling, fitness classes, and personalized wellness consultations.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ISLAND ACTIVITIES SECTION -->
+<section class="relative py-20 px-6 bg-gray-800">
+    <!-- Beach Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="../assets/islandactivity.png" alt="Island Activities Background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/65"></div>
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-light mb-6" style="font-family: 'Playfair Display', serif;">
+                Island Activities
+            </h2>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                A playground for the over-and-underwater world adventurers. Surfing, diving, snorkeling, fishing, sailing, nature trails & villages to explore.
+            </p>
+        </div>
+
+        <!-- ACTIVITIES GRID -->
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+            <div class="bg-gray-700 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="mb-4 text-5xl">ðŸ„</div>
+                <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Water Sports</h4>
+                <p class="text-gray-200">Surfing, diving, snorkeling, and sailing adventures. Professional instructors available for all skill levels on crystal-clear waters.</p>
+            </div>
+            <div class="bg-gray-700 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="mb-4 text-5xl">ðŸ¥¾</div>
+                <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Nature Exploration</h4>
+                <p class="text-gray-200">Hiking trails through lush jungles, discovering hidden waterfalls, and visits to traditional villages to experience authentic island life.</p>
+            </div>
+            <div class="bg-gray-700 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="mb-4 text-5xl">ðŸŽ£</div>
+                <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Fishing Expeditions</h4>
+                <p class="text-gray-200">Join deep-sea and reef fishing tours with expert guides. Learn traditional fishing techniques and discover the island's rich marine ecosystem.</p>
+            </div>
+            <div class="bg-gray-700 bg-opacity-90 rounded-lg p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="mb-4 text-5xl">â›µ</div>
+                <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Sailing Adventures</h4>
+                <p class="text-gray-200">Sunset sailing expeditions, island-hopping tours, and private yacht charters for unforgettable ocean experiences and coastal exploration.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GASTRONOMIC DINE SECTION -->
+<section class="relative py-20 px-6 bg-gray-900">
+    <!-- Beach Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1400&h=600&fit=crop" alt="Dining Background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-light mb-6" style="font-family: 'Playfair Display', serif;">
+                Gastronomic Dine
+            </h2>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                Indulge in a culinary journey with our diverse menu, featuring locally-sourced ingredients and expertly crafted dishes that celebrate the flavors of the region.
+            </p>
+        </div>
+
+        <!-- DINING OPTIONS -->
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+            <div class="bg-gray-800 bg-opacity-90 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="h-48 bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center">
+                    <img src="../assets/food.png" alt="Fine Dining" class="w-full h-full object-cover opacity-90">
+                </div>
+                <div class="p-8">
+                    <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Fine Dining</h4>
+                    <p class="text-gray-300 mb-4">Award-winning chefs presenting innovative cuisine using fresh island ingredients in an elegant setting with world-class service.</p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>âœ“ Multi-course tasting menus</li>
+                        <li>âœ“ Wine pairing experiences</li>
+                        <li>âœ“ Private dining available</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 bg-opacity-90 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop" alt="Beach Dining" class="w-full h-full object-cover opacity-90">
+                </div>
+                <div class="p-8">
+                    <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Beach Dining</h4>
+                    <p class="text-gray-300 mb-4">Romantic beachfront meals with fresh seafood, tropical fruits, and sunset views over the ocean in paradise setting.</p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>âœ“ Fresh seafood daily</li>
+                        <li>âœ“ Sunset dinner experiences</li>
+                        <li>âœ“ Barefoot elegance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 bg-opacity-90 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300">
+                <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
+                    <img src="../assets/tropical.png" alt="Tropical Bar" class="w-full h-full object-cover opacity-90">
+                </div>
+                <div class="p-8">
+                    <h4 class="text-2xl font-semibold mb-3" style="font-family: 'Marcellus', serif;">Tropical Bar & Lounge</h4>
+                    <p class="text-gray-300 mb-4">Signature cocktails, craft beverages, and light bites in a relaxed tropical atmosphere with live music and island vibes.</p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>âœ“ Craft cocktails</li>
+                        <li>âœ“ Premium spirits</li>
+                        <li>âœ“ Live entertainment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIAL EXPERIENCES -->
+        <div class="mt-16">
+            <h3 class="text-3xl font-light text-center mb-8" style="font-family: 'Playfair Display', serif;">Culinary Experiences</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-700 bg-opacity-90 rounded-lg p-8 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4" style="font-family: 'Marcellus', serif;">ðŸ½ï¸ Chef's Table</h4>
+                    <p class="text-gray-300 mb-4">Sit with our executive chef and experience an exclusive tasting menu featuring seasonal ingredients with detailed explanations of each course.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>â€¢ Personal attention from the chef</li>
+                        <li>â€¢ Behind-the-scenes kitchen tour</li>
+                        <li>â€¢ Custom menu based on preferences</li>
+                        <li>â€¢ Wine or beverage pairing</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-700 bg-opacity-90 rounded-lg p-8 shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-4" style="font-family: 'Marcellus', serif;">ðŸ‘¨â€ðŸ³ Cooking Classes</h4>
+                    <p class="text-gray-300 mb-4">Learn to prepare authentic island cuisine from our master chefs in our state-of-the-art facility overlooking the ocean.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>â€¢ Half-day and full-day sessions</li>
+                        <li>â€¢ Learn traditional island recipes</li>
+                        <li>â€¢ Use fresh local ingredients</li>
+                        <li>â€¢ Enjoy your creations with wine</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-800 border-t border-gray-700 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Palmwave Resort & Suites. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Terms of Service</a>
+            <a href="#" class="hover:text-white">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function openMenu() {
+    document.getElementById('sideMenu').classList.remove('-translate-x-full');
+    document.getElementById('overlay').classList.remove('hidden');
+}
+
+function closeMenu() {
+    document.getElementById('sideMenu').classList.add('-translate-x-full');
+    document.getElementById('overlay').classList.add('hidden');
+}
+
+function toggleSubMenu() {
+    const subMenu = document.getElementById('subMenu');
+    const arrow = document.getElementById('arrow');
+    subMenu.classList.toggle('hidden');
+    arrow.style.transform = subMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+}
+
+
+
+// Dropdown menu hover handling
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdowns = document.querySelectorAll('.search-dropdown');
+    dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.navbar-dropdown');
+        let timeout;
+
+        dropdown.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+            menu.style.display = 'block';
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+    });
+});
+
+</script>
+</body>
+</html>
+
+

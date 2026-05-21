@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - Palmwave Resort & Suites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./assets/palm-wave-icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .navbar-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(8, 8, 8);
+            border-radius: 4px;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .navbar-dropdown.active {
+            display: block;
+        }
+        .search-dropdown {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="text-white bg-gray-900">
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="closeMenu()" class="fixed inset-0 bg-black/60 z-40 hidden"></div>
+
+<!-- SIDEBAR MENU -->
+<div id="sideMenu" class="fixed top-0 left-0 w-[400px] h-full bg-white text-black z-50 transform -translate-x-full transition duration-500 ease-in-out shadow-2xl">
+    <div class="flex justify-end p-6">
+        <button onclick="closeMenu()" class="text-3xl">&times;</button>
+    </div>
+
+    <div class="px-10 space-y-5 text-2xl font-light" style="font-family: 'Marcellus', serif;">
+        <a href="index.html" class="block text-yellow-700 hover:text-gray-700">Home</a>
+        <div>
+            <button onclick="toggleSubMenu()" class="flex justify-between w-full items-center">
+                Rooms
+                <span id="arrow" class="transition">›</span>
+            </button>
+
+            <div id="subMenu" class="hidden pl-6 mt-2 space-y-2 text-lg">
+                <a href="rooms.html?category=1" class="block">Standard Rooms</a>
+                <a href="rooms.html?category=2" class="block">Deluxe Rooms</a>
+                <a href="rooms.html?category=3" class="block">Suites</a>
+                <a href="rooms.html?category=4" class="block">Villas</a>
+                <a href="rooms.html?category=5" class="block">Penthouse</a>
+            </div>
+        </div>
+        <a href="luxury.php" class="block hover:text-gray-700">About The Hotel</a>
+        <a href="#" class="block hover:text-gray-700">Premium Services</a>
+        <a href="#" class="block hover:text-gray-700">Contact</a>
+    </div>
+
+    <div class="absolute bottom-10 left-10 text-sm space-y-2 text-black">
+        <p class="font-semibold">Contact Info</p>
+        <p>322 Main Street, PH, CA 94559</p>
+        <p>+41 22 345 67 88</p>
+        <p>PalmWaveResort&Suites@gmail.com</p>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="sticky top-0 left-0 w-full z-20 bg-white/5 border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+
+      <div class="flex items-center space-x-4" style="font-family: 'Marcellus', serif;">
+        <button onclick="openMenu()" class="text-2xl">☰</button>
+
+        <nav class="hidden md:flex space-x-6 uppercase text-sm tracking-wide" style="font-family: 'Marcellus', serif;">
+          <a href="index.html" class="hover:text-gray-300 underline decoration-white underline-offset-8 decoration-4 ">Home</a>
+          <div class="search-dropdown relative group">
+              <a href="rooms.html" class="hover:text-gray-300 flex items-center">
+                  Rooms
+                  <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+              </a>
+              <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                  <a href="rooms.html?category=1" class="block px-4 py-2 hover:bg-slate-700">Standard Rooms</a>
+                  <a href="rooms.html?category=2" class="block px-4 py-2 hover:bg-slate-700">Deluxe Rooms</a>
+                  <a href="rooms.html?category=3" class="block px-4 py-2 hover:bg-slate-700">Suites</a>
+                  <a href="rooms.html?category=4" class="block px-4 py-2 hover:bg-slate-700">Villas</a>
+                  <a href="rooms.html?category=5" class="block px-4 py-2 hover:bg-slate-700">Penthouse</a>
+                  <a href="rooms.html" class="block px-4 py-2 border-b border-slate-700 hover:bg-slate-700 font-semibold">View All Rooms</a>
+              </div>
+          </div>
+
+          <div class="search-dropdown relative group">
+              <a href="luxury.php" class="hover:text-gray-300 flex items-center">
+                  Pages
+                  <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+              </a>
+              <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                  <a href="luxury.php" class="block px-4 py-2 hover:bg-slate-700">About The Hotel</a>
+                  <a href="services.html" class="block px-4 py-2 hover:bg-slate-700">Services</a>
+              </div>
+          </div>
+
+          <a href="#" class="hover:text-gray-300">Blog</a>
+        </nav>
+      </div>
+
+      <div class="flex-1 text-center">
+        <h1>
+          <a href="index.html" 
+             class="text-3xl md:text-3xl tracking-wide text-white hover:text-gray-300 transition duration-300"
+             style="font-family: 'Playfair Display', serif; letter-spacing: 0.08em;">
+            Palmwave Resort & Suites
+          </a>
+        </h1>
+      </div>
+
+      <div class="flex items-center space-x-4 text-sm">
+        <span>PalmWaveResort&Suites@gmail.com</span>
+      </div>
+
+    </div>
+</header>
+
+<!-- ROOM DETAILS -->
+<section class="py-16 px-6 bg-gray-900">
+    <div class="max-w-5xl mx-auto">
+        <button onclick="history.back()" class="mb-6 flex items-center gap-2 text-yellow-400 hover:text-yellow-300">
+            <span>←</span> Back to Rooms
+        </button>
+
+        <div id="roomDetailsContainer" class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+            <div class="text-center py-8">Loading room details...</div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-800 border-t border-gray-700 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Palmwave Resort & Suites. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+function openMenu() {
+    document.getElementById('sideMenu').classList.remove('-translate-x-full');
+    document.getElementById('overlay').classList.remove('hidden');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const roomId = params.get('id');
+    
+    if (!roomId) {
+        window.location.href = 'rooms.html';
+        return;
+    }
+    
+    loadRoomDetails(roomId);
+});
+
+async function loadRoomDetails(roomId) {
+    try {
+        const response = await fetch(`api/get_room_details.php?id=${roomId}`);
+        const room = await response.json();
+        
+        if (room.error) {
+            document.getElementById('roomDetailsContainer').innerHTML = `<div class="text-center py-8 text-red-400">${room.error}</div>`;
+            return;
+        }
+        
+        renderRoomDetails(room);
+    } catch (error) {
+        console.error('Error loading room details:', error);
+        document.getElementById('roomDetailsContainer').innerHTML = '<div class="text-center py-8 text-red-400">Unable to load room details at this time. Please try again later.</div>';
+    }
+}
+
+function renderRoomDetails(room) {
+    const container = document.getElementById('roomDetailsContainer');
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0];
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowString = tomorrow.toISOString().split('T')[0];
+    const imageSrc = room.photo_url ? room.photo_url : 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop';
+    const roomAvailable = Number(room.available) === 1;
+
+    container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+            <div>
+                <img src="${imageSrc}" alt="${room.name}" class="w-full h-96 object-cover rounded">
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                    <img src="${imageSrc}" alt="${room.name} thumbnail" class="w-full h-32 object-cover rounded border border-gray-600 bg-gray-900 p-2">
+                    <img src="${imageSrc}" alt="${room.name} thumbnail" class="w-full h-32 object-cover rounded border border-gray-600 bg-gray-900 p-2">
+                </div>
+            </div>
+
+            <div>
+                <div class="mb-4">
+                    <span class="text-sm text-yellow-400">${room.category_name}</span>
+                    <h1 class="text-3xl font-light mb-2" style="font-family: 'Playfair Display', serif;">${room.name}</h1>
+                    <p class="text-2xl text-yellow-400 font-bold">₱${parseFloat(room.price).toLocaleString('en-US', {minimumFractionDigits: 2})}/night</p>
+                </div>
+
+                <p class="text-gray-300 mb-6">${room.description}</p>
+
+                <div class="bg-gray-700 p-6 rounded mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Room Details</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>👥 Capacity: ${room.capacity} guests</li>
+                        <li>✨ Amenities: ${room.amenities}</li>
+                        <li>📍 Status: ${roomAvailable ? '<span class="text-emerald-400">Available</span>' : '<span class="text-red-400">Reserved / Unavailable</span>'}</li>
+                    </ul>
+                </div>
+
+                ${roomAvailable ? '' : '<div class="mb-6 p-6 bg-red-900 rounded text-red-200 border border-red-700">This room has already been reserved and is currently unavailable. Please choose another room.</div>'}
+
+                <form id="bookingForm" ${roomAvailable ? '' : 'class="opacity-50 pointer-events-none"'} onsubmit="submitBooking(event, ${room.id})">
+                    <h3 class="text-lg font-semibold mb-4">Booking Details</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2">Full Name</label>
+                        <input type="text" name="fullName" required class="w-full px-4 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-yellow-400 outline-none" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2">Email</label>
+                        <input type="email" name="email" required class="w-full px-4 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-yellow-400 outline-none" placeholder="Enter your email">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2">Phone Number</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-yellow-400 outline-none" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Check-in Date</label>
+                            <input type="date" name="checkIn" required min="${todayString}" value="${todayString}" class="w-full px-4 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-yellow-400 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Check-out Date</label>
+                            <input type="date" name="checkOut" required min="${tomorrowString}" value="${tomorrowString}" class="w-full px-4 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-yellow-400 outline-none">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2">Number of Guests</label>
+                        <input type="number" name="guests" min="1" max="${room.capacity}" required value="1" class="w-full px-4 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-yellow-400 outline-none">
+                    </div>
+
+                    <div class="mb-6 p-4 bg-gray-700 rounded">
+                        <div class="flex justify-between mb-2">
+                            <span>Price per night:</span>
+                            <span>₱${parseFloat(room.price).toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Number of nights:</span>
+                            <span id="nightsCount">1</span>
+                        </div>
+                        <div class="border-t border-gray-600 pt-2 flex justify-between font-bold">
+                            <span>Total Price:</span>
+                            <span id="totalPrice">₱${parseFloat(room.price).toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" ${roomAvailable ? '' : 'disabled'} class="w-full px-4 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold rounded transition ${roomAvailable ? '' : 'bg-gray-600 cursor-not-allowed'}">
+                        Proceed to Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+    `;
+
+    const checkInInput = container.querySelector('input[name="checkIn"]');
+    const checkOutInput = container.querySelector('input[name="checkOut"]');
+    
+    function updateTotalPrice() {
+        const checkIn = checkInInput.value;
+        const checkOut = checkOutInput.value;
+        
+        if (checkIn && checkOut) {
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+            const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            
+            if (nights > 0) {
+                document.getElementById('nightsCount').textContent = nights;
+                document.getElementById('totalPrice').textContent = '₱' + (nights * room.price).toLocaleString('en-US', {minimumFractionDigits: 2});
+            }
+        }
+    }
+
+    if (checkInInput) {
+        checkInInput.min = todayString;
+        if (!checkInInput.value || checkInInput.value < todayString) {
+            checkInInput.value = todayString;
+        }
+    }
+
+    if (checkOutInput) {
+        checkOutInput.min = tomorrowString;
+        if (!checkOutInput.value || checkOutInput.value <= todayString) {
+            checkOutInput.value = tomorrowString;
+        }
+    }
+
+    if (checkInInput) {
+        checkInInput.addEventListener('change', () => {
+            const selectedDate = new Date(checkInInput.value);
+            const nextDate = new Date(selectedDate);
+            nextDate.setDate(nextDate.getDate() + 1);
+            const nextDateString = nextDate.toISOString().split('T')[0];
+
+            if (checkOutInput) {
+                checkOutInput.min = nextDateString;
+                if (!checkOutInput.value || checkOutInput.value <= checkInInput.value) {
+                    checkOutInput.value = nextDateString;
+                }
+            }
+            updateTotalPrice();
+        });
+    }
+
+    if (checkOutInput) {
+        checkOutInput.addEventListener('change', updateTotalPrice);
+    }
+}
+
+async function submitBooking(e, roomId) {
+    e.preventDefault();
+    
+    const form = document.getElementById('bookingForm');
+    const bookingData = {
+        customer_name: form.querySelector('input[name="fullName"]').value,
+        customer_email: form.querySelector('input[name="email"]').value,
+        customer_phone: form.querySelector('input[name="phone"]').value,
+        room_id: roomId,
+        check_in_date: form.querySelector('input[name="checkIn"]').value,
+        check_out_date: form.querySelector('input[name="checkOut"]').value,
+        num_guests: parseInt(form.querySelector('input[name="guests"]').value),
+        payment_method: 'pending'
+    };
+
+    try {
+        const response = await fetch('api/create_booking.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Redirect to payment page
+            window.location.href = `payment.html?booking_id=${result.booking_id}&amount=${result.total_price}`;
+        } else {
+            alert('Error: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while creating the booking');
+    }
+}
+
+function openMenu() {
+    document.getElementById('sideMenu').classList.remove('-translate-x-full');
+    document.getElementById('overlay').classList.remove('hidden');
+}
+
+function closeMenu() {
+    document.getElementById('sideMenu').classList.add('-translate-x-full');
+    document.getElementById('overlay').classList.add('hidden');
+}
+
+// Dropdown menu hover handling
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdowns = document.querySelectorAll('.search-dropdown');
+    dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.navbar-dropdown');
+        let timeout;
+
+        dropdown.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+            menu.style.display = 'block';
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+    });
+});
+</script>
+</body>
+</html>

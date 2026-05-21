@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Rooms - Palmwave Resort & Suites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../assets/palm-wave-icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .navbar-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 4px;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+    </style>
+    <script src="js/path-helper.js"></script>
+</head>
+<body class="text-white bg-gray-900">
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="closeMenu()" 
+class="fixed inset-0 bg-black/60 z-40 hidden"></div>
+
+<!-- SIDEBAR MENU -->
+<div id="sideMenu" 
+class="fixed top-0 left-0 w-[400px] h-full bg-white text-black z-50 transform -translate-x-full transition duration-500 ease-in-out shadow-2xl overflow-y-auto">
+
+    <div class="flex justify-end p-6">
+        <button onclick="closeMenu()" class="text-3xl">&times;</button>
+    </div>
+
+    <div class="px-10 space-y-5 text-2xl font-light" style="font-family: 'Marcellus', serif;">
+        <a href="index.html" class="block hover:text-gray-700">Home</a>
+        <a href="rooms.html" class="block text-gray-700 hover:text-gray-700">Rooms</a>
+        <a href="../luxury.php" class="block hover:text-gray-700">About The Hotel</a>
+        <a href="#" class="block hover:text-gray-700">Contact</a>
+        
+        <div class="pt-4 border-t">
+            <p class="text-sm font-semibold text-gray-700 mb-3">Room Categories</p>
+            <a href="rooms.html?category=1" class="block text-lg hover:text-gray-600 mb-2">Standard Rooms</a>
+            <a href="rooms.html?category=2" class="block text-lg hover:text-gray-600 mb-2">Deluxe Rooms</a>
+            <a href="rooms.html?category=3" class="block text-lg hover:text-gray-600 mb-2">Suites</a>
+            <a href="rooms.html?category=4" class="block text-lg hover:text-gray-600 mb-2">Villas</a>
+            <a href="rooms.html?category=5" class="block text-lg hover:text-gray-600">Penthouse</a>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+
+  <header class="absolute top-0 left-0 w-full z-20 bg-white/5 border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+
+      <div class="flex items-center space-x-4" style="font-family: 'Marcellus', serif;">
+        <button onclick="openMenu()" class="text-2xl">☰</button>
+
+        <nav class="hidden md:flex space-x-6 uppercase text-sm tracking-wide" style="font-family: 'Marcellus', serif;">
+          <a href="index.html" class="hover:text-gray-300 ">Home</a>
+           <!-- Rooms Dropdown -->
+                    <div class="search-dropdown relative group">
+                        <a href="rooms.html" class="hover:text-gray-300 flex items-center underline decoration-white underline-offset-8 decoration-4">
+                            Rooms
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </a>
+                        <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                            <a href="rooms.html" class="block px-4 py-2 border-b border-slate-700 hover:bg-slate-700 font-semibold">View All Rooms</a>
+                            <a href="rooms.html?category=1" class="block px-4 py-2 hover:bg-slate-700">Standard Rooms</a>
+                            <a href="rooms.html?category=2" class="block px-4 py-2 hover:bg-slate-700">Deluxe Rooms</a>
+                            <a href="rooms.html?category=3" class="block px-4 py-2 hover:bg-slate-700">Suites</a>
+                            <a href="rooms.html?category=4" class="block px-4 py-2 hover:bg-slate-700">Villas</a>
+                            <a href="rooms.html?category=5" class="block px-4 py-2 hover:bg-slate-700">Penthouse</a>
+                        
+                        </div>
+                    </div>
+
+
+            <!-- Rooms Dropdown -->
+                    <div class="search-dropdown relative group">
+                        <a href="../luxury.php" class="hover:text-gray-300 flex items-center">
+                            Pages
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </a>
+                        <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                            <a href="../luxury.php" class="block px-4 py-2 hover:bg-slate-700">About The Hotel</a>
+                            <a href="services.html" class="block px-4 py-2 hover:bg-slate-700">Services</a>
+                            <a href="" class="block px-4 py-2 hover:bg-slate-700">Our Blog</a>
+                        </div>
+                    </div>
+
+        </nav>
+      </div>
+
+      <div class="flex-1 text-center">
+        <h1>
+          <a href="index.html" 
+             class="text-3xl md:text-3xl tracking-wide text-white hover:text-gray-300 transition duration-300"
+             style="font-family: 'Playfair Display', serif; letter-spacing: 0.08em;">
+             
+            Palmwave Resort & Suites
+          </a>
+        </h1>
+      </div>
+
+      <div class="flex items-center space-x-4 text-sm">
+
+        <span>PalmWaveResort&Suites@gmail.com</span>
+
+        
+      </div>
+
+    </div>
+    
+  </header>
+
+
+
+<!-- FILTER TABS -->
+<section id="filterTabs" class="bg-gray-800 border-b border-gray-700 py-4 px-6 sticky top-20 z-10 transition-all duration-400 ease-in-out">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex gap-2 overflow-x-auto pb-2">
+            <button id="btn-all" onclick="filterRooms(null)" class="filter-btn px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white font-semibold whitespace-nowrap">
+                All Rooms
+            </button>
+            <button id="btn-1" onclick="filterRooms(1)" class="filter-btn px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white font-semibold whitespace-nowrap">
+                Standard Rooms
+            </button>
+            <button id="btn-2" onclick="filterRooms(2)" class="filter-btn px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white font-semibold whitespace-nowrap">
+                Deluxe Rooms
+            </button>
+            <button id="btn-3" onclick="filterRooms(3)" class="filter-btn px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white font-semibold whitespace-nowrap">
+                Suites
+            </button>
+            <button id="btn-4" onclick="filterRooms(4)" class="filter-btn px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white font-semibold whitespace-nowrap">
+                Villas
+            </button>
+            <button id="btn-5" onclick="filterRooms(5)" class="filter-btn px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white font-semibold whitespace-nowrap">
+                Penthouse
+            </button>
+        </div>
+    </div>
+</section>
+
+
+<!-- ROOMS LISTING -->
+<section class="py-16 px-6 bg-gray-900">
+        <div class="max-w-6xl mx-auto pt-20 pb-4 px-2 ">
+        <h2 class="text-4xl md:text-5xl font-light" style="font-family: 'Playfair Display', serif;">
+            Rooms & Suites
+        </h2>
+        <p class="text-gray-400 mt-2">Experience luxury in every corner</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+        <div id="roomsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center py-8">
+                <p class="text-gray-400">Loading rooms...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-800 border-t border-gray-700 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Palmwave Resort & Suites. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Terms of Service</a>
+            <a href="#" class="hover:text-white">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function openMenu() {
+    document.getElementById('sideMenu').classList.remove('-translate-x-full');
+    document.getElementById('overlay').classList.remove('hidden');
+}
+
+function closeMenu() {
+    document.getElementById('sideMenu').classList.add('-translate-x-full');
+    document.getElementById('overlay').classList.add('hidden');
+}
+
+let allRooms = [];
+let currentFilter = null;
+
+// Get category from URL parameter
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+    if (category) {
+        currentFilter = parseInt(category);
+    }
+    updateButtonStyles();
+    loadRooms();
+});
+
+function updateButtonStyles() {
+    // Remove active class from all buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-gray-600');
+        btn.classList.add('bg-gray-700');
+    });
+
+    // Add active to the current filter
+    if (currentFilter === null) {
+        document.getElementById('btn-all').classList.remove('bg-gray-700');
+        document.getElementById('btn-all').classList.add('bg-gray-600');
+    } else {
+        document.getElementById(`btn-${currentFilter}`).classList.remove('bg-gray-700');
+        document.getElementById(`btn-${currentFilter}`).classList.add('bg-gray-600');
+    }
+}
+
+async function loadRooms() {
+    try {
+        const baseUrl = window.sitePaths.api('get_rooms.php');
+        const url = currentFilter ? `${baseUrl}?category_id=${currentFilter}` : baseUrl;
+        const response = await fetch(url);
+        const rooms = await response.json();
+        allRooms = rooms;
+        renderRooms(rooms);
+    } catch (error) {
+        console.error('Error loading rooms:', error);
+        document.getElementById('roomsContainer').innerHTML = '<div class="col-span-full text-center text-red-400">Error loading rooms</div>';
+    }
+}
+
+function renderRooms(rooms) {
+    const container = document.getElementById('roomsContainer');
+    const availabilityMap = {
+        1: { label: 'Standard Rooms', count: 20 },
+        2: { label: 'Deluxe Rooms', count: 20 },
+        3: { label: 'Suites', count: 20 },
+        4: { label: 'Villas', count: 10 },
+        5: { label: 'Penthouse', count: 5 }
+    };
+
+    // Function to format capacity to guest display
+    const formatGuestCapacity = (capacity) => {
+        const capacityMap = {
+            2: '2 Pax',
+            3: '4 Pax',
+            4: '2 Pax',
+            6: '8-10 Pax',
+            8: '15-20 Pax',
+            15:'15 Pax',
+            20:'20 Pax'
+        };
+        return capacityMap[capacity] || `${capacity} Pax`;
+    };
+    
+    if (rooms.length === 0) {
+        container.innerHTML = '<div class="col-span-full text-center py-8"><p class="text-gray-400">No rooms available in this category</p></div>';
+        return;
+    }
+
+    container.innerHTML = rooms.map(room => {
+        const categoryInfo = availabilityMap[room.category_id] || { label: room.category_name, count: 0 };
+        const detailsUrl = window.sitePaths.page(`room_details.html?id=${room.id}`);
+        const imageUrl = room.photo_url
+            ? window.sitePaths.image(room.photo_url)
+            : 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop';
+        return `
+        <div class="bg-gray-800 rounded overflow-hidden shadow-lg hover:shadow-2xl transition group flex flex-col h-full">
+            <div class="relative h-64 bg-gray-700 overflow-hidden">
+                <img src="${imageUrl}" alt="${room.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute top-0 right-0 bg-gray-600 text-white px-3 py-1 m-3 rounded">
+                    ₱${parseFloat(room.price).toLocaleString('en-US', {minimumFractionDigits: 2})}
+                </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center justify-between mb-3 gap-4">
+                    <div>
+                        <div class="text-sm text-gray-400">${categoryInfo.label}</div>
+                        <div class="text-sm text-gray-400">${categoryInfo.count} Available</div>
+                    </div>
+                    <span class="text-xs uppercase tracking-[0.2em] bg-gray-700 px-3 py-1 rounded text-gray-300">${formatGuestCapacity(room.capacity)}</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">${room.name}</h3>
+                <p class="text-gray-400 text-sm mb-4">${room.description}</p>
+                <p class="text-gray-400 text-xs mb-4">Amenities: ${room.amenities}</p>
+                <a href="${detailsUrl}" class="block w-full text-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded transition mt-auto">
+                    View Details & Book
+                </a>
+            </div>
+        </div>
+    `;
+    }).join('');
+}
+
+function filterRooms(categoryId) {
+    currentFilter = categoryId === null ? null : categoryId;
+    updateButtonStyles();
+    loadRooms();
+}
+
+// Dropdown menu hover handling
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdowns = document.querySelectorAll('.search-dropdown');
+    dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.navbar-dropdown');
+        let timeout;
+
+        dropdown.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+            menu.style.display = 'block';
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+    });
+});
+
+const filterTabs = document.getElementById('filterTabs');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+            filterTabs.classList.remove('top-20');
+            filterTabs.classList.add('top-0');
+        } else {
+            filterTabs.classList.remove('top-0');
+            filterTabs.classList.add('top-20');
+        }
+    });
+
+
+</script>
+
+</body>
+</html>
+
+

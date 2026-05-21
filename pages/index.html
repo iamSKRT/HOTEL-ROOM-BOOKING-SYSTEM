@@ -1,0 +1,1088 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palmwave Resort & Suites - Home</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+    <link rel="icon" href="../assets/palm-wave-icon.png" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .navbar-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(8, 8, 8);
+            border-radius: 4px;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .navbar-dropdown.active {
+            display: block;
+        }
+        .search-dropdown {
+            position: relative;
+        }
+    </style>
+    <script src="js/path-helper.js"></script>
+</head>
+<body class="text-white bg-gray-900">
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="closeMenu()" 
+class="fixed inset-0 bg-black/60 z-40 hidden"></div>
+
+<!-- SIDEBAR MENU -->
+<div id="sideMenu" 
+class="fixed top-0 left-0 w-[400px] h-full bg-white text-black z-50 transform -translate-x-full transition duration-500 ease-in-out shadow-2xl">
+
+    <div class="flex justify-end p-6">
+        <button onclick="closeMenu()" class="text-3xl">&times;</button>
+    </div>
+
+    <div class="px-10 space-y-5 text-2xl font-light" style="font-family: 'Marcellus', serif;">
+        <a href="index.html" class="block text-yellow-700 hover:text-gray-700">Home</a>
+        
+        <div>
+      <button onclick="toggleSubMenu()" class="flex justify-between w-full items-center">
+        Rooms
+        <span id="arrow" class="transition">></span>
+      </button>
+
+      <div id="subMenu" class="hidden pl-6 mt-2 space-y-2 text-lg">
+        <a href="rooms.html?category=1" class="block">Standard Rooms</a>
+        <a href="rooms.html?category=2" class="block">Deluxe Rooms</a>
+        <a href="rooms.html?category=3" class="block">Suites</a>
+        <a href="rooms.html?category=4" class="block">Villas</a>
+        <a href="rooms.html?category=5" class="block">Penthouse</a>
+      </div>
+    </div>
+        
+        <a href="../luxury.php" class="block hover:text-gray-700">About The Hotel</a>
+        <a href="#" class="block hover:text-gray-700">Premium Services</a>
+        <a href="#" class="block hover:text-gray-700">Contact</a>
+    </div>
+
+    <div class="absolute bottom-10 left-10 text-sm space-y-2 text-black">
+        <p class="font-semibold">Contact Info</p>
+        <p>322 Main Street, PH, CA 94559</p>
+        <p>+41 22 345 67 88</p>
+        <p>PalmWaveResort&Suites@gmail.com</p>
+    </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="relative h-screen bg-cover bg-center">
+
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- NAVBAR -->
+  <header class="absolute top-0 left-0 w-full z-20 bg-white/5 border-b border-white/30">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+
+      <div class="flex items-center space-x-4" style="font-family: 'Marcellus', serif;">
+        <button onclick="openMenu()" class="text-2xl">☰</button>
+
+        <nav class="hidden md:flex space-x-6 uppercase text-sm tracking-wide" style="font-family: 'Marcellus', serif;">
+          <a href="#" class="hover:text-gray-300 underline decoration-white underline-offset-8 decoration-4 ">Home</a>
+           <!-- Rooms Dropdown -->
+                    <div class="search-dropdown relative group">
+                        <a href="rooms.html" class="hover:text-gray-300 flex items-center">
+                            Rooms
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </a>
+                        <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                          <a href="rooms.html" class="block px-4 py-2 border-b border-slate-700 hover:bg-slate-700 font-semibold">View All Rooms</a>  
+                          <a href="rooms.html?category=1" class="block px-4 py-2 hover:bg-slate-700">Standard Rooms</a>
+                          <a href="rooms.html?category=2" class="block px-4 py-2 hover:bg-slate-700">Deluxe Rooms</a>
+                          <a href="rooms.html?category=3" class="block px-4 py-2 hover:bg-slate-700">Suites</a>
+                          <a href="rooms.html?category=4" class="block px-4 py-2 hover:bg-slate-700">Villas</a>
+                          <a href="rooms.html?category=5" class="block px-4 py-2 hover:bg-slate-700">Penthouse</a>
+                            
+                        </div>
+                    </div>
+
+
+            <!-- Rooms Dropdown -->
+                    <div class="search-dropdown relative group">
+                        <a href="../luxury.php" class="hover:text-gray-300 flex items-center">
+                            Pages
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </a>
+                        <div class="navbar-dropdown bg-slate-800 text-white rounded shadow-lg mt-2 absolute left-0 top-full w-48 z-50">
+                            <a href="../luxury.php" class="block px-4 py-2 hover:bg-slate-700">About The Hotel</a>
+                            <a href="services.html" class="block px-4 py-2 hover:bg-slate-700">Services</a>
+                            <a href="" class="block px-4 py-2 hover:bg-slate-700">Our Blog</a>
+                        
+                        </div>
+                    </div>
+
+       
+        </nav>
+      </div>
+
+      <div class="flex-1 text-center">
+        <h1>
+          <a href="#" 
+             class="text-3xl md:text-3xl tracking-wide text-white hover:text-gray-300 transition duration-300"
+             style="font-family: 'Playfair Display', serif; letter-spacing: 0.08em;">
+             
+            Palmwave Resort & Suites
+          </a>
+        </h1>
+      </div>
+
+      <div class="flex items-center space-x-4 text-sm">
+
+        <span>PalmWaveResort&Suites@gmail.com</span>
+
+        
+      </div>
+
+    </div>
+  </header>
+        
+
+    <!-- HERO CONTENT -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+        <h2 class="text-4xl md:text-6xl font-light mb-4 text-center" style="font-family: 'Playfair Display', serif;">
+            Refined Countryside Escape <br>
+        at Palmwave Resort & Suites
+        </h2>
+        <p class="text-gray-300 md:text-2xl mb-8 text-center max-w-2xl">
+            Experience luxury at Palmwave Resort & Suites
+        </p>
+
+        
+        <!-- BOOKING FORM -->
+        <div class="absolute left-0 right-0 bottom-10 px-5 z-10 flex justify-center">
+            <form id="bookingWidget" onsubmit="handleBookingSearch(event)" class="h-[100px] w-auto bg-white/10 border border-white/20 backdrop-blur-xl rounded-3xl px-4 py-3 flex items-center gap-3">
+                <div class="min-w-[130px] max-w-[160px] h-[50px] rounded-2xl border border-white/20 bg-white/10 px-3 flex items-center">
+                    <label for="checkInDate" class="sr-only">Check In</label>
+                    <input type="date" id="checkInDate" name="checkIn" required class="w-full h-10 bg-transparent text-white text-sm font-semibold outline-none" style="color-scheme: dark;" placeholder="Check In">
+                </div>
+                <div class="min-w-[130px] max-w-[160px] h-[50px] rounded-2xl border border-white/20 bg-white/10 px-3 flex items-center">
+                    <label for="checkOutDate" class="sr-only">Check Out</label>
+                    <input type="date" id="checkOutDate" name="checkOut" required class="w-full h-10 bg-transparent text-white text-sm font-semibold outline-none" style="color-scheme: dark;" placeholder="Check Out">
+                </div>
+                <div class="min-w-[120px] max-w-[140px] h-[50px] rounded-2xl border border-white/20 bg-white/10 px-3 flex items-center">
+                    <label for="roomType" class="sr-only">Room</label>
+                    <select id="roomType" name="category" class="w-full h-10 bg-transparent text-white text-sm font-semibold outline-none">
+                        <option value="" class="text-black">All Types</option>
+                        <option value="1" class="text-black">Standard</option>
+                        <option value="2" class="text-black">Deluxe</option>
+                        <option value="3" class="text-black">Suites</option>
+                        <option value="4" class="text-black">Villas</option>
+                        <option value="5" class="text-black">Penthouse</option>
+                    </select>
+                </div>
+                <div class="min-w-[100px] max-w-[120px] h-[50px] rounded-2xl border border-white/20 bg-white/10 px-3 flex items-center">
+                    <label for="numGuests" class="sr-only">Guests</label>
+                    <input type="number" id="numGuests" name="guests" min="1" max="10" value="1" class="w-full h-10 bg-transparent text-white text-sm font-semibold outline-none" placeholder="Guests">
+                </div>
+                <button type="submit" class="h-[50px] min-w-[160px] bg-yellow-500 hover:bg-yellow-400 rounded-2xl text-black font-semibold tracking-wide transition duration-300">
+                    Check Availability
+                </button>
+            </form>
+        </div>
+        
+    
+    </div>
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section class="relative py-32 bg-white text-black overflow-hidden" id="experience">
+
+  <!-- BACKGROUND IMAGE (TOP HALF ONLY) -->
+  <div class="absolute inset-0 ">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+      class="w-full h-[50%] object-cover">
+  </div>
+
+  <div class="absolute inset-0 bg-black/25"></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+
+ <!-- CENTER TEXT -->
+<div class="text-center mb-20">
+
+  <!-- ICON -->
+  <img src="../assets/palm-wave-icon.png"
+       alt="Palmwave Icon"
+       class="mx-auto mb-6 w-20 h-20 object-contain ">
+
+  <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-white/90 font-mono">
+    Unforgettable Experience
+  </h2>
+
+  <p class="text-lg md:text-xl font-light mb-2 text-white/100 font-serif">
+    One of the World's Most Desirable Locations
+  </p>
+
+  <p class="max-w-3xl mx-auto text-sm md:text-base text-white/100 font-serif">
+    A superior, 5-star resort embodying the very best of Fiji Islands luxury,
+    tranquility & sophistication.
+  </p>
+
+</div>
+
+
+    <!-- CARDS -->
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- CARD 1 -->
+      <div class="text-center exp-card flex flex-col items-center">
+        <img src="../assets/spaandwellness.png"
+           class="exp-img w-full h-[420px] object-cover rounded-xl shadow-lg">
+
+        <h3 class="mt-6 text-lg font-semibold font-Marcellus">Spa & Wellness</h3>
+
+        <p class="mt-3 text-sm text-black leading-relaxed px-4 font-serif">
+          Set in lush jungle, our modern spa embodies the calm of nature, offering extraordinary visual and auditory experiences that pamper and heal.
+        </p>
+
+        <a href="services.html" class="mt-6 inline-block group font-medium text-black" style="font-family: 'Marcellus', serif;">
+          <span class="relative pb-1">
+            Discover More
+            <span class="absolute left-0 bottom-0 w-full h-[2px] bg-[#B99D75] scale-x-100 origin-left transition-transform duration-300 group-hover:scale-x-0"></span>
+          </span>
+        </a>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="text-center md:-mt-10 exp-card">
+        <img src="../assets/islandactivity.png"
+           class="exp-img w-full h-[420px] object-cover rounded-xl shadow-lg">
+
+        <h3 class="mt-6 text-lg font-semibold font-Marcellus">Island Activities</h3>
+
+        <p class="mt-3 text-sm text-black leading-relaxed px-4 font-serif">
+          Discover the thrill of island adventures with our curated activities, from snorkeling to hiking, all designed to immerse you in the natural beauty of the surroundings.
+        </p>
+
+        <a href="services.html" class="mt-6 inline-block group font-medium text-black" style="font-family: 'Marcellus', serif;">
+          <span class="relative pb-1">
+            Discover More
+            <span class="absolute left-0 bottom-0 w-full h-[2px] bg-[#B99D75] scale-x-100 origin-left transition-transform duration-300 group-hover:scale-x-0"></span>
+          </span>
+        </a>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="text-center exp-card">
+        <img src="../assets/food.png"
+           class="exp-img w-full h-[420px] object-cover rounded-xl shadow-lg">
+
+        <h3 class="mt-6 text-lg font-semibold font-Marcellus">Gastronomic Dine</h3>
+
+        <p class="mt-3 text-sm text-black leading-relaxed px-4 font-serif">
+          Indulge in a culinary journey with our diverse menu, featuring locally-sourced ingredients and expertly crafted dishes that celebrate the flavors of the region.
+        </p>
+
+        <a href="services.html" class="mt-6 inline-block group font-medium text-black" style="font-family: 'Marcellus', serif;">
+          <span class="relative pb-1">
+            Discover More
+            <span class="absolute left-0 bottom-0 w-full h-[2px] bg-[#B99D75] scale-x-100 origin-left transition-transform duration-300 group-hover:scale-x-0"></span>
+          </span>
+        </a>
+      </div>
+
+      
+      
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- LUXURY ROOMS SECTION -->
+<section class="py-28 bg-[#E0E1DF] text-[#1a1a1a] overflow-hidden" id="rooms">
+
+<!-- HEADER -->
+<!-- HEADER -->
+<div class="max-w-6xl mx-auto px-6 text-left mb-14 pt-0">
+
+  <h2 class="text-2xl text-gray-500 text-[#1a1a1a] tracking-wide leading-relaxed font-mono">
+    Indulge in a World-Class Stay Experience
+  </h2>
+
+  <h2 class="text-5xl font-serif tracking-wider leading-tight text-[#1a1a1a] mt-3">
+    Experience Luxurious Rooms & Suites with Breathtaking Views
+  </h2>
+
+  <p class="mt-6 text-black-700 max-w-2xl leading-loose tracking-wide">
+    Escape into a sanctuary where the mountains meet endless ocean horizons, and every stay is defined by refined luxury, natural beauty, and serene elegance. Experience a world of comfort, sophistication, and timeless tranquility crafted for the discerning traveler.
+  </p>
+
+</div>
+
+
+
+  <!-- SLIDER WRAPPER -->
+  <div class="relative max-w-6xl mx-auto">
+
+   
+
+    <!-- TRACK -->
+    <div id="track" class="flex gap-6 will-change-transform">
+
+      <!-- CARD -->
+      <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/coral.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Coral Breeze Room</h3>
+            <p class="text-sm text-gray-200">Standard â€¢ Pax: 2 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              A calming coastal retreat designed for pure relaxation and comfort.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=1" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/seabreeze.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Seabreeze Comfort Room</h3>
+            <p class="text-sm text-gray-200">Standard â€¢ Pax: 2 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Soft ocean tones with a peaceful island ambiance.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=2" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Azure.png"
+            class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Azure Horizon Deluxe</h3>
+            <p class="text-sm text-gray-200">Deluxe â€¢ Pax: 2â€“4 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Elegant ocean horizon views with premium interiors.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=3" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Golden.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Golden Palm Deluxe</h3>
+            <p class="text-sm text-gray-200">Deluxe â€¢ Pax: 2â€“4 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Warm tropical luxury with golden ambient lighting.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=4" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+           <!-- CARD -->
+      <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Ocean.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Ocean Pearl Executive Suite</h3>
+            <p class="text-sm text-gray-200">Suites â€¢ Pax: 2â€“4 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Spacious suite with panoramic ocean views and premium amenities.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=5" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <!-- CARD -->
+        <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Sapphire.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Sapphire Wave Suite</h3>
+            <p class="text-sm text-gray-200">Suites â€¢ Pax: 2â€“4 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Luxurious suite with stunning ocean views and elegant design.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=6" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+           <!-- CARD -->
+        <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Sunset Mirage Suite.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Sunset Mirage Suite</h3>
+            <p class="text-sm text-gray-200">Suites â€¢ Pax: 2 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Elegant suite with breathtaking sunset views and premium amenities.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=7" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+           <!-- CARD -->
+        <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Palm Royale Villa.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Palm Royale Villa</h3>
+            <p class="text-sm text-gray-200">Villa â€¢ Pax: 6â€“8 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Luxurious villa with private beach access and premium amenities.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=8" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+        <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Lagoon Crest Villa.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Lagoon Crest Villa</h3>
+            <p class="text-sm text-gray-200">Villa â€¢ Pax: 8â€“10 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Stunning villa with direct beach access and world-class amenities.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=9" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- CARD -->
+        <div class="card min-w-[80%] md:min-w-[55%] lg:min-w-[40%]">
+        <div class="relative rounded-2xl overflow-hidden bg-white shadow-lg group">
+
+          <img src="../assets/Royal Tides Oceanfront Penthouse.png"
+             class="aspect-square w-full object-cover transition duration-500 group-hover:scale-110">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-0 p-6 text-white">
+            <h3 class="text-2xl font-semibold">Royal Tides Oceanfront Penthouse</h3>
+            <p class="text-sm text-gray-200">Penthouse â€¢ Pax: 15â€“20 Guests</p>
+            <p class="mt-2 text-sm text-gray-200">
+              Exclusive penthouse with panoramic ocean views and luxurious amenities.
+            </p>
+            <div class="mt-5">
+              <a href="room_details.html?id=10" class="inline-block px-4 py-2 bg-[#C6A15B] rounded-lg text-sm font-semibold hover:bg-[#B99D75] transition">
+                Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DOTS -->
+    <div class="flex justify-center gap-2 mt-8" id="dots"></div>
+
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="bg-gray-800 py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-light text-center mb-12" style="font-family: 'Playfair Display', serif;">
+            World-Class Amenities
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-5xl mb-4">🏊</div>
+                <h3 class="text-xl font-semibold mb-2">Swimming Pool</h3>
+                <p class="text-gray-400">Olympic-sized pool with cabanas</p>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl mb-4">🍽️</div>
+                <h3 class="text-xl font-semibold mb-2">Fine Dining</h3>
+                <p class="text-gray-400">Award-winning restaurants</p>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl mb-4">💆</div>
+                <h3 class="text-xl font-semibold mb-2">Spa & Wellness</h3>
+                <p class="text-gray-400">Full-service spa facilities</p>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl mb-4">🎉</div>
+                <h3 class="text-xl font-semibold mb-2">Events</h3>
+                <p class="text-gray-400">Complete event services</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- TESTIMONIAL SECTION -->
+<section class="py-28 relative bg-[#0b0f14] text-white overflow-hidden">
+
+  <!-- BACKGROUND -->
+  <div class="absolute inset-0">
+    <img src="../assets/reviews.png" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+  </div>
+
+  <!-- HEADER -->
+<div class="relative max-w-6xl mx-auto px-6 text-center mb-14">
+
+  <!-- ICON -->
+  <div class="flex justify-center mb-4">
+    <div class="bg-white/10 border border-white/20 p-4 rounded-full backdrop-blur-md">
+      <svg xmlns="http://www.w3.org/2000/svg" 
+        class="w-6 h-6 text-white opacity-80" 
+        fill="currentColor" 
+        viewBox="0 0 24 24">
+        <path d="M7 17h3l2-4V7H6v6h3l-2 4zm10 0h3l2-4V7h-6v6h3l-2 4z"/>
+      </svg>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-mono text-gray-300 tracking-wide">
+    Voice From Our Guests
+  </h2>
+
+  <h2 class="text-5xl font-serif mt-3 tracking-wide">
+    Luxury Experiences Shared
+  </h2>
+
+  <p class="mt-6 text-gray-300 max-w-2xl mx-auto leading-loose">
+  Moments Cherished by Our Guests at Palmwave Resort & Suites
+  </p>
+
+</div>
+
+
+  
+  <!-- SLIDER WRAPPER -->
+<div class="relative max-w-4xl mx-auto">
+
+  <!-- TRACK -->
+  <div id="testimonialTrack" class="flex transition-transform duration-700 ease-in-out">
+
+    <!-- CARD 1 -->
+    <div class="min-w-full px-4">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-10 shadow-xl text-left">
+        <p class="italic text-gray-200 leading-loose">
+          Everything here was great: the staff, the room layout, the amenities, and especially the mountain view.
+        </p>
+        <div class="mt-6">
+          <p class="font-semibold">Anna Williams</p>
+          <p class="text-sm text-gray-300">TripAdvisor</p>
+        </div>
+        <div class="mt-5 text-yellow-400 text-xl tracking-widest">✰✰✰✰✰</div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="min-w-full px-4">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-10 shadow-xl text-left">
+        <p class="italic text-gray-200 leading-loose">
+           The ocean view suite was breathtaking. Service was exceptional and very peaceful.
+        </p>
+        <div class="mt-6">
+          <p class="font-semibold">Michael Cruz</p>
+          <p class="text-sm text-gray-300">Google Reviews</p>
+        </div>
+        <div class="mt-5 text-yellow-400 text-xl tracking-widest">✰✰✰✰✰</div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="min-w-full px-4">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-10 shadow-xl text-left">
+        <p class="italic text-gray-200 leading-loose">
+          A true luxury escape. The sunset view and ambiance were unforgettable.
+        </p>
+        <div class="mt-6">
+          <p class="font-semibold">Sofia Reyes</p>
+          <p class="text-sm text-gray-300">Booking.com</p>
+        </div>
+        <div class="mt-5 text-yellow-400 text-xl tracking-widest">✰✰✰✰✰</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DOTS -->
+  <div id="testimonialDots" class="flex justify-center mt-6 space-x-3"></div>
+
+  </div>
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 border-t border-gray-700 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Palmwave Resort & Suites. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Terms of Service</a>
+            <a href="#" class="hover:text-white">Contact</a>
+        </div>
+        
+    </div>
+</footer>
+
+<script>
+function openMenu() {
+    document.getElementById('sideMenu').classList.remove('-translate-x-full');
+    document.getElementById('overlay').classList.remove('hidden');
+}
+
+function closeMenu() {
+    document.getElementById('sideMenu').classList.add('-translate-x-full');
+    document.getElementById('overlay').classList.add('hidden');
+}
+
+  function toggleSubMenu() {
+    document.getElementById("subMenu")?.classList.toggle("hidden");
+  }
+
+// Hero image carousel
+const heroImages = [
+    'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1400&h=900&fit=crop',
+    'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1400&h=900&fit=crop',
+    'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1400&h=900&fit=crop'
+];
+
+let currentImageIndex = 0;
+const heroSection = document.getElementById('hero');
+
+function changeHeroImage() {
+    currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+    heroSection.style.backgroundImage = `url('${heroImages[currentImageIndex]}')`;
+}
+
+setInterval(changeHeroImage, 5000); // Change image every 5 seconds
+
+// Initial image
+heroSection.style.backgroundImage = `url('${heroImages[0]}')`;
+
+
+  
+  /* =========================
+     GSAP ANIMATION
+  ========================== */
+  if (typeof gsap !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(".exp-card", {
+      opacity: 0,
+      y: 80,
+      duration: 1,
+      stagger: 0.25,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#experience",
+        start: "top 80%",
+      }
+    });
+
+    document.querySelectorAll(".exp-card img").forEach((img) => {
+      img.addEventListener("mouseenter", () => {
+        gsap.to(img, { scale: 1.05, duration: 0.4 });
+      });
+
+      img.addEventListener("mouseleave", () => {
+        gsap.to(img, { scale: 1, duration: 0.4 });
+      });
+    });
+  }
+
+
+  /* =========================
+     CARD SLIDER (DRAG)
+  ========================== */
+  const track = document.getElementById("track");
+  const cards = document.querySelectorAll(".card");
+  const cardDotsContainer = document.getElementById("dots");
+
+  if (track && cards.length && cardDotsContainer) {
+
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    // create dots
+    cards.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "w-2.5 h-2.5 rounded-full bg-white/30";
+      dot.onclick = () => goTo(i);
+      cardDotsContainer.appendChild(dot);
+    });
+
+    const cardDots = cardDotsContainer.querySelectorAll("button");
+
+    function updateDots() {
+      cardDots.forEach((d, i) => {
+        d.className =
+          i === index
+            ? "w-6 h-2.5 rounded-full bg-white"
+            : "w-2.5 h-2.5 rounded-full bg-white/30";
+      });
+    }
+
+    function goTo(i) {
+      index = Math.max(0, Math.min(i, cards.length - 1));
+      const cardWidth = cards[0].offsetWidth + 24;
+
+      gsap.to(track, {
+        x: -index * cardWidth,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      updateDots();
+    }
+
+    // mouse drag
+    track.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startX = e.clientX;
+    });
+
+    track.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+
+      currentX = e.clientX;
+      const diff = currentX - startX;
+
+      gsap.set(track, {
+        x: -index * (cards[0].offsetWidth + 24) + diff
+      });
+    });
+
+    track.addEventListener("mouseup", () => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      const diff = currentX - startX;
+
+      if (diff < -80) index++;
+      else if (diff > 80) index--;
+
+      goTo(index);
+    });
+
+    track.addEventListener("mouseleave", () => {
+      if (isDragging) {
+        isDragging = false;
+        goTo(index);
+      }
+    });
+
+    // touch
+    track.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    track.addEventListener("touchend", (e) => {
+      const diff = e.changedTouches[0].clientX - startX;
+
+      if (diff < -80) index++;
+      else if (diff > 80) index--;
+
+      goTo(index);
+    });
+
+    updateDots();
+    goTo(0);
+  }
+
+  
+  /* =========================
+     TESTIMONIAL AUTO SLIDER
+  ========================== */
+  const tTrack = document.getElementById("testimonialTrack");
+  const testimonialDotsContainer = document.getElementById("testimonialDots");
+
+  if (tTrack && testimonialDotsContainer) {
+
+    const tSlides = tTrack.children;
+    const tTotal = tSlides.length;
+    let tIndex = 0;
+    let autoSlide;
+
+    // create dots
+    for (let i = 0; i < tTotal; i++) {
+      const dot = document.createElement("button");
+      dot.className = "w-2.5 h-2.5 rounded-full bg-white/30 transition-all";
+
+      dot.onclick = () => {
+        tIndex = i;
+        updateTestimonial();
+        resetAutoSlide();
+      };
+
+      testimonialDotsContainer.appendChild(dot);
+    }
+
+    const tDots = testimonialDotsContainer.querySelectorAll("button");
+
+    function updateTestimonial() {
+      tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
+
+      tDots.forEach((d, i) => {
+        d.className =
+          i === tIndex
+            ? "w-6 h-2.5 rounded-full bg-white"
+            : "w-2.5 h-2.5 rounded-full bg-white/30";
+      });
+    }
+
+    function startAutoSlide() {
+      autoSlide = setInterval(() => {
+        tIndex = (tIndex + 1) % tTotal;
+        updateTestimonial();
+      }, 4000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlide);
+      startAutoSlide();
+    }
+
+    updateTestimonial();
+    startAutoSlide();
+  }
+
+  // Initialize booking widget dates for both forms
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  
+  // Main hero form
+  const checkInInput = document.getElementById('checkInDate');
+  const checkOutInput = document.getElementById('checkOutDate');
+  
+  // Bottom form
+  const checkInInputBottom = document.getElementById('checkInDateBottom');
+  const checkOutInputBottom = document.getElementById('checkOutDateBottom');
+  
+  [checkInInput, checkInInputBottom].forEach(input => {
+    if (input) {
+      input.min = today.toISOString().split('T')[0];
+      input.value = today.toISOString().split('T')[0];
+    }
+  });
+  
+  [checkOutInput, checkOutInputBottom].forEach(input => {
+    if (input) {
+      input.min = tomorrow.toISOString().split('T')[0];
+      input.value = tomorrow.toISOString().split('T')[0];
+    }
+  });
+
+  // Handle check-in date change to update check-out minimum for both forms
+  [checkInInput, checkInInputBottom].forEach((checkIn, index) => {
+    if (checkIn) {
+      const checkOut = index === 0 ? checkOutInput : checkOutInputBottom;
+      checkIn.addEventListener('change', () => {
+        const selectedDate = new Date(checkIn.value);
+        const nextDay = new Date(selectedDate);
+        nextDay.setDate(nextDay.getDate() + 1);
+        
+        if (checkOut) {
+          checkOut.min = nextDay.toISOString().split('T')[0];
+          if (checkOut.value <= checkIn.value) {
+            checkOut.value = nextDay.toISOString().split('T')[0];
+          }
+        }
+      });
+    }
+  });
+
+  // Booking search handler
+  window.handleBookingSearch = function(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const checkIn = form.querySelector('input[name="checkIn"]').value;
+    const checkOut = form.querySelector('input[name="checkOut"]').value;
+    const category = form.querySelector('select[name="category"]').value;
+    const guests = form.querySelector('input[name="guests"]').value;
+    
+    // Basic validation
+    if (!checkIn || !checkOut) {
+      alert('Please select both check-in and check-out dates.');
+      return;
+    }
+    
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    
+    if (checkOutDate <= checkInDate) {
+      alert('Check-out date must be after check-in date.');
+      return;
+    }
+    
+    // Build query string
+    const params = new URLSearchParams();
+    params.append('checkIn', checkIn);
+    params.append('checkOut', checkOut);
+    params.append('guests', guests);
+    if (category) {
+      params.append('category', category);
+    }
+    
+    // Redirect to rooms page with search parameters
+    window.location.href = `rooms.html?${params.toString()}`;
+  };
+
+
+
+// Dropdown menu hover handling
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdowns = document.querySelectorAll('.search-dropdown');
+    dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.navbar-dropdown');
+        let timeout;
+
+        dropdown.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+            menu.style.display = 'block';
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                menu.style.display = 'none';
+            }, 100);
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>
+
+
