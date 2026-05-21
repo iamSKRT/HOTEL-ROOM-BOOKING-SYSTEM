@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 
-const SERVER_URL = 'http://localhost:5000';
+const SERVER_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const formatDateInput = (date) => date.toISOString().slice(0, 10);
 const addDays = (dateString, offset) => {

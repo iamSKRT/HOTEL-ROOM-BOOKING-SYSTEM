@@ -2,7 +2,27 @@
 require_once '../config.php';
 requireAdminLogin();
 
-$action = isset($_GET['action']) ? $_GET['action'] : 'list';
+// Ensure optional gallery photo columns exist in the rooms table before using them.
+$roomColumnsResult = $conn->query("SHOW COLUMNS FROM rooms LIKE 'photo_url_2'");
+if (!$roomColumnsResult || $roomColumnsResult->num_rows === 0) {
+    $conn->query("ALTER TABLE rooms ADD COLUMN photo_url_2 VARCHAR(255)");
+}
+$roomColumnsResult = $conn->query("SHOW COLUMNS FROM rooms LIKE 'photo_url_3'");
+if (!$roomColumnsResult || $roomColumnsResult->num_rows === 0) {
+    $conn->query("ALTER TABLE rooms ADD COLUMN photo_url_3 VARCHAR(255)");
+}
+$roomColumnsResult = $conn->query("SHOW COLUMNS FROM rooms LIKE 'photo_url_4'");
+if (!$roomColumnsResult || $roomColumnsResult->num_rows === 0) {
+    $conn->query("ALTER TABLE rooms ADD COLUMN photo_url_4 VARCHAR(255)");
+}
+
+$action = 'list';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
+} elseif (isset($_GET['action'])) {
+    $action = $_GET['action'];
+}
+
 $success_message = '';
 $error_message = '';
 
@@ -59,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             if ($action == 'add') {
                 $stmt = $conn->prepare("INSERT INTO rooms (category_id, name, description, price, capacity, photo_url, photo_url_2, photo_url_3, photo_url_4, amenities) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("isiiidsssss", $category_id, $name, $description, $price, $capacity, $photo_url, $photo_url_2, $photo_url_3, $photo_url_4, $amenities);
+                $stmt->bind_param("issdisssss", $category_id, $name, $description, $price, $capacity, $photo_url, $photo_url_2, $photo_url_3, $photo_url_4, $amenities);
                 
                 if ($stmt->execute()) {
                     $success_message = 'Room added successfully!';
@@ -70,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } elseif ($action == 'edit') {
                 $room_id = intval($_POST['room_id'] ?? 0);
                 $stmt = $conn->prepare("UPDATE rooms SET category_id=?, name=?, description=?, price=?, capacity=?, photo_url=?, photo_url_2=?, photo_url_3=?, photo_url_4=?, amenities=? WHERE id=?");
-                $stmt->bind_param("isiiidsssssi", $category_id, $name, $description, $price, $capacity, $photo_url, $photo_url_2, $photo_url_3, $photo_url_4, $amenities, $room_id);
+                $stmt->bind_param("issdisssssi", $category_id, $name, $description, $price, $capacity, $photo_url, $photo_url_2, $photo_url_3, $photo_url_4, $amenities, $room_id);
                 
                 if ($stmt->execute()) {
                     $success_message = 'Room updated successfully!';
