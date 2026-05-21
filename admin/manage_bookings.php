@@ -269,6 +269,8 @@ $bookings = $stmt->get_result();
     </div>
 </div>
 
+
+
 <script>
 function openModal(method, guests, total, reference) {
     document.getElementById('modal-method').textContent = method;
