@@ -164,7 +164,7 @@ Password: admin123
 
 ## 📄 License
 
-© 2025 Palmwave Resort & Suites. All rights reserved.
+© 2026 Palmwave Resort & Suites. All rights reserved.
 
 ---
 
