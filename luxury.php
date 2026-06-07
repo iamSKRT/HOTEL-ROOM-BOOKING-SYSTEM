@@ -299,10 +299,15 @@ while ($row = $result->fetch_assoc()) {
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-black py-8 px-4 animate-on-scroll" id="footer">
-    <div class="max-w-7xl mx-auto text-center">
-        <p class="text-gray-400">&copy; 2024 Palmwave Resort & Suites. All rights reserved.</p>
+<!-- FOOTER -->
+<footer class="bg-gray-800 border-t border-gray-700 py-8 px-6">
+    <div class="max-w-6xl mx-auto text-center text-gray-400 text-sm">
+        <p>&copy; 2026 Palmwave Resort & Suites. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Terms of Service</a>
+            <a href="#" class="hover:text-white">Contact</a>
+        </div>
     </div>
 </footer>
 
