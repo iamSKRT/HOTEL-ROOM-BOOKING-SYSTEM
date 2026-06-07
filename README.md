@@ -158,7 +158,7 @@ Password: admin123
 **Palmwave Resort & Suites**
 - Email: PalmWaveResort&Suites@gmail.com
 - Phone: +41 22 345 67 88
-- Address: 322 Main Street, PH, CA 94559
+- Address: 322 Main Street, PH, 94559
 
 ---
 
