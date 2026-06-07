@@ -100,10 +100,10 @@ Choose what you need:
 ## 💳 Payment Methods
 
 ### GCash
-- Merchant: **0917-123-4567**
+- Merchant: ****
 
 ### Maya
-- Merchant: **payments@palmwave.com**
+- Merchant: ****
 
 ---
 
